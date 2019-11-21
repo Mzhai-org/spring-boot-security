@@ -1,7 +1,7 @@
 # spring-boot-security
 spring boot integration with spring security and thymeleaf simple  demo
 
-use the thymeleaf form submit not a The separation of front-end and back-end project
+use the thymeleaf form submit not a separation of front-end and back-end project
 
 I hope I can help you.
 
