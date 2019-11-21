@@ -3,6 +3,7 @@ package com.zs.springbootsecurity.security;
 
 import com.zs.springbootsecurity.bo.User;
 import com.zs.springbootsecurity.mapper.UserMapper;
+import com.zs.springbootsecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,13 +26,13 @@ public class CustomUserService implements UserDetailsService {
   
   
   @Autowired
-  UserMapper mapper;
+  UserService service;
   
   @Override
   public UserDetails loadUserByUsername(String loginName) throws UsernameNotFoundException {
 
 
-    User user = mapper.selectByLogin(loginName);
+    User user = service.selectByLogin(loginName);
     
     if (user == null) {
       throw new UsernameNotFoundException("username : " + loginName + "not found!");

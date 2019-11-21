@@ -20,4 +20,6 @@ public interface PermissionMapper {
     int updateByPrimaryKey(Permission record);
     
     List<Permission> selectByRole(Integer roleId);
+    
+    List<Permission> selectByUsername(String usernname);
 }
