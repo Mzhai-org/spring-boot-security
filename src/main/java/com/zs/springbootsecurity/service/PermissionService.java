@@ -18,4 +18,6 @@ public interface PermissionService {
   List<Permission> selectByUsername(String username);
   
   List<Permission> selectByRole(Integer roleId);
+
+  List<Permission> selectByRoleName(String roleName);
 }

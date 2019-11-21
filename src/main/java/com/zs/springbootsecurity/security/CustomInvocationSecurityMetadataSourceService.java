@@ -58,19 +58,30 @@ public class CustomInvocationSecurityMetadataSourceService implements FilterInvo
   //此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
   @Override
   public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-    if(map ==null) loadResourceDefine();
+    //if(map ==null) loadResourceDefine();
     //object 中包含用户请求的request 信息
-    HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
-    AntPathRequestMatcher matcher;
-    String resUrl;
-    for(Iterator<String> iter = map.keySet().iterator(); iter.hasNext(); ) {
-      resUrl = iter.next();
-      matcher = new AntPathRequestMatcher(resUrl);
-      if(matcher.matches(request)) {
-        return map.get(resUrl);
-      }
+//    HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
+//    AntPathRequestMatcher matcher;
+//    String resUrl;
+//    for(Iterator<String> iter = map.keySet().iterator(); iter.hasNext(); ) {
+//      resUrl = iter.next();
+//      matcher = new AntPathRequestMatcher(resUrl);
+//      if(matcher.matches(request)) {
+//        return map.get(resUrl);
+//      }
+//    }
+    
+    FilterInvocation request = (FilterInvocation) object;
+    String url = request.getRequestUrl();
+    if (url.equals("/login") || url.equals("/css/bootstrap.min.css")) {
+      return null;
     }
-    return null;
+    ConfigAttribute cfg = new SecurityConfig(url);
+    Collection<ConfigAttribute> array = new ArrayList<>();
+    array.add(cfg);
+    
+    
+    return array;
   }
 
   @Override

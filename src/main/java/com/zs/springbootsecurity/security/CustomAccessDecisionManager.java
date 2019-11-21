@@ -1,6 +1,10 @@
 
 package com.zs.springbootsecurity.security;
 
+import com.zs.springbootsecurity.bo.Permission;
+import com.zs.springbootsecurity.mapper.PermissionMapper;
+import com.zs.springbootsecurity.service.PermissionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;
@@ -10,7 +14,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * <pre>
@@ -24,6 +31,9 @@ import java.util.Collection;
 @Primary
 public class CustomAccessDecisionManager implements AccessDecisionManager {
 
+  @Autowired
+  PermissionService permissionService;
+  
   // decide 方法是判定是否拥有权限的决策方法，
   //authentication 是释CustomUserService中循环添加到 GrantedAuthority 对象中的权限信息集合.
   //object 包含客户端发起的请求的requset信息，可转换为 HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
@@ -35,17 +45,20 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
     if (configAttributes == null || configAttributes.size() <= 0) {
       return;
     }
-    String needRole;
     for (ConfigAttribute item: configAttributes) {
-      needRole = item.getAttribute();
+      String url = item.getAttribute();
       for (GrantedAuthority ga: authentication.getAuthorities()) {
-         if (needRole.trim().equals(ga.getAuthority())) {
-           return;
-         }
+        String auth = ga.getAuthority();
+        List<Permission> permissions = permissionService.selectByRoleName(auth);
+
+        for (Permission p: permissions) {
+          if (url.trim().equals(p.getUrl())) {
+            return;
+          }
+        }
       }
     }
    throw new AccessDeniedException("no right"); 
-    
   }
 
   @Override

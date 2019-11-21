@@ -32,4 +32,9 @@ public class PermissionServiceImpl implements PermissionService {
   public List<Permission> selectByRole(Integer roleId) {
     return mapper.selectByRole(roleId);
   }
+
+  @Override
+  public List<Permission> selectByRoleName(String roleName) {
+    return mapper.selectByRoleName(roleName);
+  }
 }
