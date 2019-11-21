@@ -1,5 +1,9 @@
 # spring-boot-security
-spring boot integration with spring security and thymeleaf simpale demo
+spring boot integration with spring security and thymeleaf simple  demo
+
+use the thymeleaf form submit not a The separation of front-end and back-end project
+
+I hope I can help you.
 
 # pom dependencies
     <dependency>
@@ -48,4 +52,33 @@ spring boot integration with spring security and thymeleaf simpale demo
 # mybatis generator tool
     it is already define in pom.xml, you can update generatorConfig.xml
     and datasource.properties to use it.
+    
+# notice
+    if you want ignore web static resource, 
+    add the configure method at the security config class
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        //解决静态资源被拦截的问题
+        web.ignoring().antMatchers("/css/**");
+    }
+    
+    about thymeleaf-extras-springsecurity and
+    
+    spring security:
+    
+    thymeleaf-extras-springsecurity3 for integration with Spring Security 3.x
+    thymeleaf-extras-springsecurity4 for integration with Spring Security 4.x
+    thymeleaf-extras-springsecurity5 for integration with Spring Security 5.x
+    Current versions:
+    
+    Version 3.0.4.RELEASE - for Thymeleaf 3.0 (requires Thymeleaf 3.0.10+)
+    Version 2.1.3.RELEASE - for Thymeleaf 2.1 (requires Thymeleaf 2.1.2+)
+    
+    For example,use thymeleaf-extras-springsecurity4 and spring security 5
+    the thymeleaf sec:authorize="hasRole('ROLE_ADMIN')" will not work
+    
+    sec:authorize="hasRole('ROLE_ADMIN')" equals sec:authorize="hasRole('ADMIN')"
+    the Prefix 'ROLE_' will auto completion,but backend must add role as "ROLE_ADMIN".
+    and spring security 5 don't allow the cleartext passwords,
+    so need config PasswordEncoder.
     
