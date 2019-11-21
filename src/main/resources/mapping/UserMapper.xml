@@ -6,6 +6,7 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <collection property="roles" ofType="com.zs.springbootsecurity.bo.Role">
+      <id column="id" property="id"/>
       <result column="name" property="name"/>
     </collection>
   </resultMap>
@@ -14,7 +15,7 @@
   </sql>
   <select id="selectByLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
     select u.*
-    ,r.name
+    ,r.id,r.name
     from user u
     LEFT JOIN user_role sru on u.id = sru.user_id
     LEFT JOIN role r on sru.role_id = r.id
