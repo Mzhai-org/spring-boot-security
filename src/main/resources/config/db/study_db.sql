@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 21/11/2019 11:55:05
+ Date: 21/11/2019 20:10:37
 */
 
 SET NAMES utf8mb4;
@@ -28,13 +28,13 @@ CREATE TABLE `permission`  (
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `pid` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES (1, 'ROLE_HOME', 'home', '/', NULL);
-INSERT INTO `permission` VALUES (2, 'ROLE_ADMIN', 'ABel', '/admin', NULL);
+INSERT INTO `permission` VALUES (1, 'ROLE_ADMIN', 'home', '/', NULL);
+INSERT INTO `permission` VALUES (2, 'ROLE_ADMIN', 'admin', '/admin', NULL);
 
 -- ----------------------------
 -- Table structure for permission_role
@@ -44,7 +44,11 @@ CREATE TABLE `permission_role`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NULL DEFAULT NULL,
   `permission_id` int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_role_id_pr_r`(`role_id`) USING BTREE,
+  INDEX `fk_permission_id_pr_p`(`permission_id`) USING BTREE,
+  CONSTRAINT `fk_permission_id_pr_p` FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `fk_role_id_pr_r` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -95,7 +99,11 @@ CREATE TABLE `user_role`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NULL DEFAULT NULL,
   `role_id` int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_user_id_ur_u`(`user_id`) USING BTREE,
+  INDEX `fk_role_id_ur_r`(`role_id`) USING BTREE,
+  CONSTRAINT `fk_role_id_ur_r` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `fk_user_id_ur_u` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
