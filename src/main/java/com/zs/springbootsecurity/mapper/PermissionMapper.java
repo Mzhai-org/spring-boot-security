@@ -2,6 +2,7 @@ package com.zs.springbootsecurity.mapper;
 
 import com.zs.springbootsecurity.bo.Permission;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -22,4 +23,6 @@ public interface PermissionMapper {
     List<Permission> selectByRole(Integer roleId);
     
     List<Permission> selectByUsername(String usernname);
+    
+    List<Permission> findAll();
 }
