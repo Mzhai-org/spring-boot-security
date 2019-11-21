@@ -2,7 +2,6 @@ package com.zs.springbootsecurity.mapper;
 
 import com.zs.springbootsecurity.bo.Permission;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 

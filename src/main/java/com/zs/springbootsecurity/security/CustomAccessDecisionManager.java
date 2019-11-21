@@ -2,7 +2,6 @@
 package com.zs.springbootsecurity.security;
 
 import com.zs.springbootsecurity.bo.Permission;
-import com.zs.springbootsecurity.mapper.PermissionMapper;
 import com.zs.springbootsecurity.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -14,10 +13,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * <pre>

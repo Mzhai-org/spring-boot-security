@@ -2,7 +2,6 @@
 package com.zs.springbootsecurity.security;
 
 import com.zs.springbootsecurity.bo.User;
-import com.zs.springbootsecurity.mapper.UserMapper;
 import com.zs.springbootsecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
