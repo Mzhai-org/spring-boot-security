@@ -4,6 +4,7 @@ package com.zs.springbootsecurity.security;
 import com.zs.springbootsecurity.bo.User;
 import com.zs.springbootsecurity.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,7 +35,8 @@ public class CustomUserService implements UserDetailsService {
     User user = service.selectByLogin(loginName);
     
     if (user == null) {
-      throw new UsernameNotFoundException("username : " + loginName + "not found!");
+//      throw new UsernameNotFoundException("username : " + loginName + "not found!");
+      throw new BadCredentialsException("Wrong username or password");
     }
     List<GrantedAuthority> authorities = 
         user.getRoles()

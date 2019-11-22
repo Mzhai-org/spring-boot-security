@@ -27,8 +27,8 @@ import java.io.IOException;
  * @author zhaishuo
  * @version $Id: CustomFilterSecurityInterceptor.java, v1.0 2019/11/21 17:47 zhaishuo Exp $
  */
-@Service
-@Primary
+//@Service
+//@Primary
 public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
   
   @Autowired

@@ -19,8 +19,8 @@ import java.util.Collection;
  * @author zhaishuo
  * @version $Id: CustomInvocationSecurityMetadataSourceService.java, v1.0 2019/11/21 17:49 zhaishuo Exp $
  */
-@Service
-@Primary
+//@Service
+//@Primary
 public class CustomInvocationSecurityMetadataSourceService implements FilterInvocationSecurityMetadataSource {
   
   //此方法是为了将除了登录url和静态资源之外的所有请求uel 返回给decide方法 判断当前用户是否有权限访问。

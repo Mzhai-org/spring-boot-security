@@ -24,8 +24,8 @@ import java.util.List;
  * @author zhaishuo
  * @version $Id: CustomAccessDecisionManager.java, v1.0 2019/11/21 17:38 zhaishuo Exp $
  */
-@Service
-@Primary
+//@Service
+//@Primary
 public class CustomAccessDecisionManager implements AccessDecisionManager {
 
   @Autowired
