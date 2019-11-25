@@ -27,10 +27,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Bean
-  UserDetailsService customUserService(){ //注册UserDetailsService 的bean
-    return new CustomUserService();
-  }
+  
   
   @Autowired
   OAuth2AuthenticationProvider authenticationProvider;
@@ -59,7 +56,7 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
     http.csrf().disable()
         .anonymous().disable()
         .authorizeRequests()
-        .antMatchers("/admin","/oauth/token").permitAll()
+        .antMatchers("/oauth/token").permitAll()
         .anyRequest().authenticated();
 
   }
