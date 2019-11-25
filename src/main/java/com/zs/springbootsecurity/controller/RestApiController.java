@@ -18,7 +18,7 @@ public class RestApiController {
   
   
   @GetMapping("/admin")
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
+//  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public String hello() {
     return "Hello, world";
   }
