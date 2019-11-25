@@ -10,6 +10,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 
@@ -31,7 +32,7 @@ public class OAuth2AuthenticationProvider implements AuthenticationProvider {
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     String username = authentication.getName();
     String password = authentication.getCredentials().toString();
-
+    
     User user = service.selectByLogin(username);
     if (user == null) {
       throw new BadCredentialsException("user not exit");
@@ -39,6 +40,7 @@ public class OAuth2AuthenticationProvider implements AuthenticationProvider {
     if (!MyPasswordEncoder.passwordEncoder().matches(password, user.getPassword())) {
       throw new BadCredentialsException("password is error");
     }
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     return new UsernamePasswordAuthenticationToken(user, password);
   }
 

@@ -38,7 +38,7 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
   @Autowired
   private ClientDetailsService clientDetailsService;
-
+  
   @Autowired
   @Qualifier("authenticationManagerBean")
   private AuthenticationManager authenticationManager;
@@ -74,17 +74,6 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
   public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
     oauthServer.allowFormAuthenticationForClients();
   }
-
-
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
-  
-//  @Bean
-//  public PasswordEncoder passwordEncoder() {
-//    return NoOpPasswordEncoder.getInstance();
-//  }
 
   @Bean
   public TokenStore tokenStore() {

@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  * <pre>
@@ -33,11 +35,6 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   OAuth2AuthenticationProvider authenticationProvider;
 
-//  @Bean
-//  public PasswordEncoder passwordEncoder() {
-//    return new BCryptPasswordEncoder();
-//  }
-  
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //    auth.userDetailsService(customUserService()).passwordEncoder(passwordEncoder()); //user Details Service验证
