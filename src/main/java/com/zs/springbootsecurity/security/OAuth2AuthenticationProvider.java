@@ -99,7 +99,7 @@ public class OAuth2AuthenticationProvider implements AuthenticationProvider {
     }
     authorityList.add(userName);
     
-    return new UsernamePasswordAuthenticationToken(model, password, authorityList);
+    return new UsernamePasswordAuthenticationToken(username, password, authorityList);
   }
 
   @Override

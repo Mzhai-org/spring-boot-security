@@ -22,7 +22,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  */
 @Configuration
 @EnableResourceServer
-@Profile("JWTAuthCore")
+//@Profile("JWTAuthCore")
 public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
 
   @Override
@@ -38,16 +38,16 @@ public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
 
   @Override
   public void configure(ResourceServerSecurityConfigurer config) {
-    config.tokenStore(tokenStore());
+    config.tokenStore(tokenStore1());
   }
 
   @Bean
-  public TokenStore tokenStore() {
-    return new JwtTokenStore(accessTokenConverter());
+  public TokenStore tokenStore1() {
+    return new JwtTokenStore(accessTokenConverter1());
   }
 
   @Bean
-  public JwtAccessTokenConverter accessTokenConverter() {
+  public JwtAccessTokenConverter accessTokenConverter1() {
     return new JwtAccessTokenConverter();
   }
 }
