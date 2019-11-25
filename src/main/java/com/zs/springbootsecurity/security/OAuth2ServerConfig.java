@@ -33,7 +33,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableAuthorizationServer
-@Profile("JWTAuthCore")
+//@Profile("JWTAuthCore")
 public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
   @Autowired
@@ -59,7 +59,8 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
   @Override
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-    endpoints.tokenStore(tokenStore())
+    endpoints
+        .tokenStore(tokenStore())
         .userApprovalHandler(userApprovalHandler(tokenStore()))
         .accessTokenConverter(accessTokenConverter())
         .authenticationManager(authenticationManager);
@@ -79,6 +80,11 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
+  
+//  @Bean
+//  public PasswordEncoder passwordEncoder() {
+//    return NoOpPasswordEncoder.getInstance();
+//  }
 
   @Bean
   public TokenStore tokenStore() {
