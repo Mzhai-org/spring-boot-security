@@ -35,6 +35,12 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
 
   @Value("${singingKey}")
   private String singingKry;
+
+  @Value("${clientId}")
+  private String clientId;
+  
+  @Value("${grantType}")
+  private String grantType;
   
   @Autowired
   private ClientDetailsService clientDetailsService;
@@ -51,8 +57,8 @@ public class OAuth2ServerConfig extends AuthorizationServerConfigurerAdapter {
    */
   @Override
   public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-    clients.inMemory().withClient("dhrm_user")
-        .authorizedGrantTypes("password")
+    clients.inMemory().withClient(clientId)
+        .authorizedGrantTypes(grantType)
         .scopes("trust")
         .accessTokenValiditySeconds(36000);//Access token is valid for 10 hour.
   }

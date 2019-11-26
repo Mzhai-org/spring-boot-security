@@ -64,9 +64,7 @@ public class OAuth2AuthenticationProvider implements AuthenticationProvider {
         .stream().forEach(role -> {
         AuthorityModel hrId = new AuthorityModel();
         hrId.setPermissionName(role.getName());
-        if (user.getId() != null) {
-          hrId.setSubjectId(user.getId().toString());
-        }
+        hrId.setPermissionId("role");
         authorityList.add(hrId);  
     });
     
@@ -75,18 +73,16 @@ public class OAuth2AuthenticationProvider implements AuthenticationProvider {
         .orElse(new ArrayList<>()).stream()
         .forEach(item -> {
           AuthorityModel authTemp = new AuthorityModel();
+          authTemp.setPermissionId("permission");
           authTemp.setPermissionName(item.getName());
-          if (user.getId() != null) {
-            authTemp.setSubjectId(String.valueOf(user.getId()));
-          }
           authorityList.add(authTemp);
         });
     
     // set user id
     AuthorityModel userId = new AuthorityModel();
-    userId.setPermissionName("USER_ID");
+    userId.setPermissionId("USER_ID");
     if (user.getId() != null) {
-      userId.setSubjectId(user.getId().toString());
+      userId.setPermissionName(user.getId().toString());
     }
     authorityList.add(userId);
     
@@ -98,7 +94,7 @@ public class OAuth2AuthenticationProvider implements AuthenticationProvider {
     }
     authorityList.add(userName);
     
-    return new UsernamePasswordAuthenticationToken(username, password, authorityList);
+    return new UsernamePasswordAuthenticationToken(user, password, authorityList);
   }
 
   @Override
