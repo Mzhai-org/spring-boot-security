@@ -37,4 +37,9 @@ public class PermissionServiceImpl implements PermissionService {
   public List<Permission> selectByRoleName(String roleName) {
     return mapper.selectByRoleName(roleName);
   }
+
+  @Override
+  public int insert(Permission record) {
+    return mapper.insert(record);
+  }
 }

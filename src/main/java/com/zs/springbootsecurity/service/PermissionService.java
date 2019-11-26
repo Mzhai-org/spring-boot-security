@@ -20,4 +20,6 @@ public interface PermissionService {
   List<Permission> selectByRole(Integer roleId);
 
   List<Permission> selectByRoleName(String roleName);
+
+  int insert(Permission record);
 }
