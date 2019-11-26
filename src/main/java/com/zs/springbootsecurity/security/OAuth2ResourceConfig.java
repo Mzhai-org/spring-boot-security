@@ -25,7 +25,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
  */
 @Configuration
 @EnableResourceServer
-//@Profile("JWTAuthCore")
+@Profile("JWTAuthCore")
 public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
 
   private static final Logger logger = LoggerFactory.getLogger(OAuth2ResourceConfig.class);

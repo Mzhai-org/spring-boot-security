@@ -4,8 +4,12 @@
     now this project use oauth2 and toke authorized login and permissions control.  
     It's still being optimized.
     please wait....
-
-
+    please reference my sql file named study_db.sql build yourself database.
+    and reference my pom dependencies,Even if the your project use gradle, please reference these dependencies and version.
+    in the class named OAuth2AuthenticationProvider will creat token by user info and permission.
+    when access api will validation permission,This needs to be open @EnableGlobalMethodSecurity(prePostEnabled = true) at OAuth2SecurityConfig class and add @PreAuthorize("hasAuthority('ADMIN')") at controller method.
+    the 'ADMIN' permission will build in token.
+    I am also practicing and learning,if you have any question please link me with zhaishuo325@163.com.maybe we can to discuss togater
 ## old version
     # spring-boot-security
     spring boot integration with spring security and thymeleaf simple  demo

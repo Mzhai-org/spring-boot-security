@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 21/11/2019 20:10:37
+ Date: 26/11/2019 17:52:34
 */
 
 SET NAMES utf8mb4;
@@ -25,16 +25,14 @@ CREATE TABLE `permission`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `pid` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
-INSERT INTO `permission` VALUES (1, 'ROLE_ADMIN', 'home', '/', NULL);
-INSERT INTO `permission` VALUES (2, 'ROLE_ADMIN', 'admin', '/admin', NULL);
+INSERT INTO `permission` VALUES (1, 'HOME', 'the user has home permission');
+INSERT INTO `permission` VALUES (2, 'ADMIN', 'the user has admin permission');
 
 -- ----------------------------
 -- Table structure for permission_role
@@ -89,7 +87,7 @@ CREATE TABLE `user`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'admin', '$2a$10$AvS7cb57ti0OO6bkPl.xKe332ZK6Koj7OV6I.iLJIqsuQd8WI.8LW');
-INSERT INTO `user` VALUES (2, 'abel', '$2a$10$X9eg1ul81ZW4GnkHFLVcAuwSLY00cJWRuN2E721T6LbJdDwqp3CLq');
+INSERT INTO `user` VALUES (2, 'abel', '$2a$10$1nGBSSj2PlwLMa8seX.g3.FjTWLzZbCXO0VlH70cStJEn81Ap8NHe');
 
 -- ----------------------------
 -- Table structure for user_role
