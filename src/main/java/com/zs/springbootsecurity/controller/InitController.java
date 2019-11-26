@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author zhaishuo
  * @version $Id: InitController.java, v1.0 2019/11/20 17:50 zhaishuo Exp $
  */
+/*
+* deprecated api
+* */
 @Controller
 public class InitController {
   
