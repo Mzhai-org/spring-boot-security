@@ -3,7 +3,6 @@ package com.zs.springbootsecurity.security;
 
 import com.zs.springbootsecurity.bo.AuthorityModel;
 import com.zs.springbootsecurity.bo.User;
-import com.zs.springbootsecurity.mapper.RoleMapper;
 import com.zs.springbootsecurity.security.passwordencoder.MyPasswordEncoder;
 import com.zs.springbootsecurity.service.PermissionService;
 import com.zs.springbootsecurity.service.UserService;

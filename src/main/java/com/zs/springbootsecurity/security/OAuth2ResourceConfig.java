@@ -1,6 +1,9 @@
 
 package com.zs.springbootsecurity.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -25,6 +28,11 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 //@Profile("JWTAuthCore")
 public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
 
+  private static final Logger logger = LoggerFactory.getLogger(OAuth2ResourceConfig.class);
+  
+  @Value("${singingKey}")
+  private String singingKry;
+  
   @Override
   public void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
@@ -38,19 +46,20 @@ public class OAuth2ResourceConfig extends ResourceServerConfigurerAdapter {
 
   @Override
   public void configure(ResourceServerSecurityConfigurer config) {
-    config.tokenStore(tokenStore1());
+    config.tokenStore(tokenStoreResource());
   }
 
   @Bean
-  public TokenStore tokenStore1() {
-    return new JwtTokenStore(accessTokenConverter1());
+  public TokenStore tokenStoreResource() {
+    return new JwtTokenStore(accessTokenConverterResource());
   }
 
   @Bean
-  public JwtAccessTokenConverter accessTokenConverter1() {
+  public JwtAccessTokenConverter accessTokenConverterResource() {
+    logger.info("singingKey: {}", singingKry);
     JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-    converter.setVerifierKey("mytest");
-    converter.setSigningKey("mytest");
+    converter.setVerifierKey(singingKry);
+    converter.setSigningKey(singingKry);
     return converter;
   }
 }
