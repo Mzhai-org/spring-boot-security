@@ -37,6 +37,9 @@ public class OAuth2AuthenticationProvider implements AuthenticationProvider {
   @Autowired
   PermissionService permissionService;
   
+  @Autowired
+  MyPasswordEncoder myPasswordEncoder;
+  
   @Override
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     String username = authentication.getName();
@@ -55,7 +58,7 @@ public class OAuth2AuthenticationProvider implements AuthenticationProvider {
     if (user == null) {
       throw new BadCredentialsException("user not exit");
     }
-    if (!MyPasswordEncoder.passwordEncoder().matches(password, user.getPassword())) {
+    if (!myPasswordEncoder.matches(password, user.getPassword())) {
       throw new BadCredentialsException("password is error");
     }
 
