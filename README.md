@@ -9,7 +9,7 @@
     in the class named OAuth2AuthenticationProvider will creat token by user info and permission.
     when access api will validation permission,This needs to be open @EnableGlobalMethodSecurity(prePostEnabled = true) at OAuth2SecurityConfig class and add @PreAuthorize("hasAuthority('ADMIN')") at controller method.
     the 'ADMIN' permission will build in token.
-    I am also practicing and learning,if you have any question please link me with zhaishuo325@163.com.maybe we can to discuss togater
+    I am also practicing and learning,if you have any question please link me with zhaishuo325@163.com.maybe we can to discuss together
 ## old version
     # spring-boot-security
     spring boot integration with spring security and thymeleaf simple  demo
